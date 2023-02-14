@@ -1,12 +1,15 @@
  function love.load( ... )
   	-- body
 
+    -- libraries
     sti = require 'libraries/sti'
     wf = require 'libraries/windfield'
+
     world = wf.newWorld(0,0)
-    gameMap = sti('maps/testMap.lua')
+    gameMap = sti('maps/testMap2.lua')
+
  	player={
- 		x = 1000,
+ 		x = 100,
  		y = 200,
         collider = world:newBSGRectangleCollider(200,250,20,40,4),
         speed = 300
@@ -14,6 +17,8 @@
     player.collider:setFixedRotation(true)
 
     walls={}
+
+    -- check for collisons on every wall 
     if gameMap.layers['walls'] then
         for i,obj in pairs(gameMap.layers['walls'].objects) do
             local wall = world:newRectangleCollider(obj.x,obj.y,obj.width,obj.height)
