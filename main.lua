@@ -1,9 +1,10 @@
  function love.load( ... )
   	-- body
- 	player={
- 		x = 100,
- 		y = 200
- 	}
+ 	player={}
+    player.x=140
+    player.y=300
+
+    player.image=love.graphics.newImage('sprites/player/player.png')
  end
  function love.update( dt )
  	-- body
@@ -12,7 +13,7 @@
 
  function love.draw()
  	-- body
- 	love.graphics.rectangle('fill',player.x,player.y,20,40)
+ 	love.graphics.draw(player.image,player.x,player.y)
  end
 
  function check_move( ... )
