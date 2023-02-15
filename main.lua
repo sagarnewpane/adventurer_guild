@@ -1,16 +1,12 @@
  function love.load( ... )
   	-- body
-<<<<<<< HEAD
- 	player={}
-    player.x=140
-    player.y=300
-
-    player.image=love.graphics.newImage('sprites/player/player.png')
-=======
 
     -- libraries
+    camera=require 'libraries/camera'
     sti = require 'libraries/sti'
     wf = require 'libraries/windfield'
+
+    cam=camera()
 
     world = wf.newWorld(0,0)
     gameMap = sti('maps/testMap2.lua')
@@ -19,7 +15,9 @@
  		x = 100,
  		y = 200,
         collider = world:newBSGRectangleCollider(200,250,20,40,4),
-        speed = 300
+        speed = 300,
+        image=love.graphics.newImage('sprites/player/player.png')
+
  	}
     player.collider:setFixedRotation(true)
 
@@ -34,7 +32,6 @@
         end
     end
 
->>>>>>> move96
  end
 
 
@@ -49,14 +46,14 @@
 
  function love.draw()
  	-- body
-<<<<<<< HEAD
- 	love.graphics.draw(player.image,player.x,player.y)
-=======
-    gameMap:draw()
- 	love.graphics.rectangle('fill',player.x-10,player.y-20,20,40)
+
+    cam:attach()
+
+        gameMap:draw()
+ 	-- love.graphics.rectangle('fill',player.x-10,player.y-20,20,40)
+        love.graphics.draw(player.image,player.x,player.y)
     -- world:draw()
-    
->>>>>>> move96
+    cam:detach()
  end
 
  function check_move( ... )
